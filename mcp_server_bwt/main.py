@@ -389,6 +389,22 @@ async def remove_sitemap(
 
 
 # Keyword Analysis Tools
+
+def _keyword_window(start_date: str, end_date: str) -> Dict[str, str]:
+    """Date range for the market-wide keyword endpoints.
+
+    GetKeyword, GetKeywordStats and GetRelatedKeywords silently return zeroed
+    counters (`Impressions: 0`, `Query: null`) when the range is missing — a 200
+    that reads like "no data for this term" rather than "you forgot an argument".
+    Callers cannot tell a genuinely unsearched keyword from a malformed request,
+    so the range is always sent, defaulting to the trailing 90 days.
+    """
+    end = end_date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    start = start_date or (
+        datetime.now(timezone.utc) - timedelta(days=90)
+    ).strftime("%Y-%m-%d")
+    return {"startDate": start, "endDate": end}
+
 @mcp.tool(
     name="get_keyword_data",
     description="Get detailed data for a specific keyword/query.",
@@ -397,6 +413,8 @@ async def get_keyword_data(
     query: Annotated[str, "The keyword/query to analyze"],
     country: Annotated[str, "Country code (e.g., 'US', 'GB')"] = "",
     language: Annotated[str, "Language code (e.g., 'en-US', 'fr-FR')"] = "",
+    start_date: Annotated[str, "Start date YYYY-MM-DD (default: 90 days ago)"] = "",
+    end_date: Annotated[str, "End date YYYY-MM-DD (default: today)"] = "",
 ) -> Dict[str, Any]:
     """
     Get detailed data for a specific keyword/query.
@@ -413,6 +431,7 @@ async def get_keyword_data(
         Keyword performance data
     """
     req_params: Dict[str, Any] = {"q": query}
+    req_params.update(_keyword_window(start_date, end_date))
     if country:
         req_params["country"] = country
     if language:
@@ -427,6 +446,8 @@ async def get_related_keywords(
     query: Annotated[str, "The base keyword/query"],
     country: Annotated[str, "Country code (e.g., 'US', 'GB')"] = "",
     language: Annotated[str, "Language code (e.g., 'en-US', 'fr-FR')"] = "",
+    start_date: Annotated[str, "Start date YYYY-MM-DD (default: 90 days ago)"] = "",
+    end_date: Annotated[str, "End date YYYY-MM-DD (default: today)"] = "",
 ) -> List[Dict[str, Any]]:
     """
     Get keywords related to a specific query.
@@ -443,6 +464,7 @@ async def get_related_keywords(
         List of related keywords
     """
     req_params: Dict[str, Any] = {"q": query}
+    req_params.update(_keyword_window(start_date, end_date))
     if country:
         req_params["country"] = country
     if language:
@@ -677,6 +699,8 @@ async def get_keyword_stats(
     query: Annotated[str, "The keyword/query to analyze"],
     country: Annotated[str, "Country code (e.g., 'US', 'GB')"] = "",
     language: Annotated[str, "Language code (e.g., 'en-US', 'fr-FR')"] = "",
+    start_date: Annotated[str, "Start date YYYY-MM-DD (default: 90 days ago)"] = "",
+    end_date: Annotated[str, "End date YYYY-MM-DD (default: today)"] = "",
 ) -> List[Dict[str, Any]]:
     """
     Get historical statistics for a specific keyword.
@@ -693,6 +717,7 @@ async def get_keyword_stats(
         List of historical impression counts for the keyword
     """
     req_params: Dict[str, Any] = {"q": query}
+    req_params.update(_keyword_window(start_date, end_date))
     if country:
         req_params["country"] = country
     if language:
