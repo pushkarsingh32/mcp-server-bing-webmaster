@@ -1,18 +1,20 @@
 # MCP Server for Bing Webmaster Tools
 
-[![npm version](https://badge.fury.io/js/@isiahw1%2Fmcp-server-bing-webmaster.svg)](https://badge.fury.io/js/@isiahw1%2Fmcp-server-bing-webmaster)
+[![npm version](https://badge.fury.io/js/@pushkarsingh32%2Fmcp-server-bing-webmaster.svg)](https://badge.fury.io/js/@pushkarsingh32%2Fmcp-server-bing-webmaster)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-green.svg)](https://nodejs.org/)
 
 An MCP (Model Context Protocol) server that provides access to Bing Webmaster Tools functionality through Claude and other MCP-compatible AI assistants.
 
+> **Fork notice:** this is a maintained fork of [isiahw1/mcp-server-bing-webmaster](https://github.com/isiahw1/mcp-server-bing-webmaster). The upstream npm package does not install its Python dependencies, so it fails to start on a clean machine. This fork includes the fixes from upstream [PR #10](https://github.com/isiahw1/mcp-server-bing-webmaster/pull/10) by [@Leafgard](https://github.com/Leafgard): working install, support for `mcp` 2.x, repaired keyword tools and a test suite. All credit for the original server goes to Isiah Wheeler (MIT license).
+
 ## 🚀 Quick Start
 
 ### For Claude Code Users:
 ```bash
 # Add the MCP server with your API key
-claude mcp add bing-webmaster -e BING_WEBMASTER_API_KEY=your_api_key_here -- npx -y @isiahw1/mcp-server-bing-webmaster@latest
+claude mcp add bing-webmaster -e BING_WEBMASTER_API_KEY=your_api_key_here -- npx -y @pushkarsingh32/mcp-server-bing-webmaster@latest
 
 # Launch Claude Code
 claude
@@ -25,7 +27,7 @@ Add to your configuration (Settings → Developer → Edit Config):
   "mcpServers": {
     "bing-webmaster": {
       "command": "npx",
-      "args": ["-y", "@isiahw1/mcp-server-bing-webmaster@latest"],
+      "args": ["-y", "@pushkarsingh32/mcp-server-bing-webmaster@latest"],
       "env": {
         "BING_WEBMASTER_API_KEY": "your_api_key_here"
       }
@@ -69,18 +71,18 @@ Add to your configuration (Settings → Developer → Edit Config):
 ### Quick Start
 The easiest way to use this MCP server is through npx (no installation required):
 ```bash
-npx @isiahw1/mcp-server-bing-webmaster@latest
+npx @pushkarsingh32/mcp-server-bing-webmaster@latest
 ```
 
 ### Global Installation (Optional)
 ```bash
-npm install -g @isiahw1/mcp-server-bing-webmaster
+npm install -g @pushkarsingh32/mcp-server-bing-webmaster
 ```
 
 ### Development Installation
 For contributors and developers:
 ```bash
-git clone https://github.com/isiahw1/mcp-server-bing-webmaster.git
+git clone https://github.com/pushkarsingh32/mcp-server-bing-webmaster.git
 cd mcp-server-bing-webmaster
 uv pip install -e .
 ```
@@ -101,7 +103,7 @@ uv pip install -e .
 #### Option 1: Quick Setup (Recommended)
 ```bash
 # Add the MCP server with inline API key
-claude mcp add bing-webmaster -e BING_WEBMASTER_API_KEY=your_api_key_here -- npx -y @isiahw1/mcp-server-bing-webmaster@latest
+claude mcp add bing-webmaster -e BING_WEBMASTER_API_KEY=your_api_key_here -- npx -y @pushkarsingh32/mcp-server-bing-webmaster@latest
 
 # Launch Claude Code
 claude
@@ -113,7 +115,7 @@ claude
 export BING_WEBMASTER_API_KEY="your_api_key_here"
 
 # Add the MCP server
-claude mcp add bing-webmaster -- npx -y @isiahw1/mcp-server-bing-webmaster@latest
+claude mcp add bing-webmaster -- npx -y @pushkarsingh32/mcp-server-bing-webmaster@latest
 
 # Launch Claude Code
 claude
@@ -125,7 +127,7 @@ claude
 echo "BING_WEBMASTER_API_KEY=your_api_key_here" > .env
 
 # Add the MCP server
-claude mcp add bing-webmaster -- npx -y @isiahw1/mcp-server-bing-webmaster@latest
+claude mcp add bing-webmaster -- npx -y @pushkarsingh32/mcp-server-bing-webmaster@latest
 
 # Launch Claude Code
 claude
@@ -153,7 +155,7 @@ claude --mcp-debug
   "mcpServers": {
     "bing-webmaster": {
       "command": "npx",
-      "args": ["-y", "@isiahw1/mcp-server-bing-webmaster@latest"],
+      "args": ["-y", "@pushkarsingh32/mcp-server-bing-webmaster@latest"],
       "env": {
         "BING_WEBMASTER_API_KEY": "your_api_key_here"
       }
@@ -185,7 +187,7 @@ claude --mcp-debug
   "mcpServers": {
     "bing-webmaster": {
       "command": "npx",
-      "args": ["-y", "@isiahw1/mcp-server-bing-webmaster@latest"],
+      "args": ["-y", "@pushkarsingh32/mcp-server-bing-webmaster@latest"],
       "env": {
         "BING_WEBMASTER_API_KEY": "your_api_key_here"
       }
@@ -210,7 +212,7 @@ claude --mcp-debug
   "mcpServers": {
     "bing-webmaster": {
       "command": "npx",
-      "args": ["-y", "@isiahw1/mcp-server-bing-webmaster@latest"],
+      "args": ["-y", "@pushkarsingh32/mcp-server-bing-webmaster@latest"],
       "env": {
         "BING_WEBMASTER_API_KEY": "your_api_key_here"
       }
@@ -230,7 +232,7 @@ For developers working with the source code:
 
 ```bash
 # Clone the repository
-git clone https://github.com/isiahw1/mcp-server-bing-webmaster.git
+git clone https://github.com/pushkarsingh32/mcp-server-bing-webmaster.git
 cd mcp-server-bing-webmaster
 
 # Install uv (if not already installed)
@@ -285,7 +287,7 @@ After configuration, you should be able to:
 
 **"spawn mcp-server-bing-webmaster ENOENT" error:**
 - Make sure you're using `npx` as the command, not `mcp-server-bing-webmaster`
-- If you have an old global installation, uninstall it: `npm uninstall -g @isiahw1/mcp-server-bing-webmaster`
+- If you have an old global installation, uninstall it: `npm uninstall -g @pushkarsingh32/mcp-server-bing-webmaster`
 
 ## Available Tools
 
@@ -400,7 +402,7 @@ Once configured, you can use these tools in Claude:
 
 ```bash
 # Clone the repository
-git clone https://github.com/isiahw1/mcp-server-bing-webmaster.git
+git clone https://github.com/pushkarsingh32/mcp-server-bing-webmaster.git
 cd mcp-server-bing-webmaster
 
 # Install uv (if not already installed)
@@ -434,4 +436,4 @@ MIT License - see LICENSE file for details.
 ## Support
 
 For issues, questions, or contributions, please visit:
-https://github.com/isiahw1/mcp-server-bing-webmaster
+https://github.com/pushkarsingh32/mcp-server-bing-webmaster

@@ -42,9 +42,9 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/isiahw1/mcp-server-bing-webmaster"
-"Bug Tracker" = "https://github.com/isiahw1/mcp-server-bing-webmaster/issues"
-"Documentation" = "https://github.com/isiahw1/mcp-server-bing-webmaster#readme"
+"Homepage" = "https://github.com/pushkarsingh32/mcp-server-bing-webmaster"
+"Bug Tracker" = "https://github.com/pushkarsingh32/mcp-server-bing-webmaster/issues"
+"Documentation" = "https://github.com/pushkarsingh32/mcp-server-bing-webmaster#readme"
 
 [tool.hatch.build.targets.wheel]
 packages = ["mcp_server_bwt"]

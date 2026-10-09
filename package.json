@@ -1,6 +1,6 @@
 {
-  "name": "@isiahw1/mcp-server-bing-webmaster",
-  "version": "1.0.2",
+  "name": "@pushkarsingh32/mcp-server-bing-webmaster",
+  "version": "1.1.0",
   "description": "MCP server for Bing Webmaster Tools integration",
   "keywords": [
     "mcp",
@@ -15,13 +15,13 @@
   ],
   "author": "Isiah Wheeler <github@isiahwheeler.com> (https://github.com/isiahw1)",
   "license": "MIT",
-  "homepage": "https://github.com/isiahw1/mcp-server-bing-webmaster#readme",
+  "homepage": "https://github.com/pushkarsingh32/mcp-server-bing-webmaster#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isiahw1/mcp-server-bing-webmaster.git"
+    "url": "git+https://github.com/pushkarsingh32/mcp-server-bing-webmaster.git"
   },
   "bugs": {
-    "url": "https://github.com/isiahw1/mcp-server-bing-webmaster/issues"
+    "url": "https://github.com/pushkarsingh32/mcp-server-bing-webmaster/issues"
   },
   "funding": {
     "type": "github",
